@@ -9,7 +9,7 @@ const RequestForm = () => {
   const { mutate, isPending } = useMutateApi({
     onSuccess: (data: Record<string, string>) => {
       const res = { ...data, isPending: false };
-      setResponse(res);
+      setResponse({...res});
     },
     onError: (err: Record<string, string>) => {
       if (axios.isAxiosError(err)) {

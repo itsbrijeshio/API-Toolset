@@ -84,7 +84,7 @@ const Response = () => {
     return <NoContent />;
   }
 
-  const status = parseInt(response?.status) || 400;
+  const status = parseInt(String(response?.status)) || 400;
   const statusColor =
     status < 400
       ? "text-success"
@@ -96,7 +96,7 @@ const Response = () => {
     <section className="w-full flex flex-col gap-2 p-2 bg-base-200 rounded-md shadow-md border border-base-100">
       <div className="flex items-center gap-2 p-2">
         <span className={`${statusColor} font-black`}>
-          {response?.status} {response?.statusText}
+          {String(response?.status)} {String(response?.statusText)}
         </span>
         <span>-</span>
         <span>({Object.keys(response?.headers || {})?.length}) headers</span>
