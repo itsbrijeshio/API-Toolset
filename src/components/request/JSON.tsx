@@ -5,14 +5,14 @@ import { useApi } from "../../contexts";
 
 const JsonReq = () => {
   const { setRequest, request } = useApi();
-  const J = request?.json || {};
-  const [value, setValue] = useState(JSON.stringify(J) || "");
+  const J = request?.json || "";
+  const [value, setValue] = useState(J || "");
 
   const onChange = useCallback(
     (val: string) => {
       const timer = setTimeout(() => {
         try {
-          setRequest((prev) => ({ ...prev, json: JSON.parse(val) }));
+          setRequest((prev) => ({ ...prev, json: val }));
         } catch (error) {
           console.log(error);
         }
@@ -22,7 +22,7 @@ const JsonReq = () => {
         clearTimeout(timer);
       };
     },
-    [request, setRequest]
+    [setRequest]
   );
 
   return (
@@ -30,7 +30,7 @@ const JsonReq = () => {
       <CodeMirror
         className="!bg-base-300"
         theme="dark"
-        value={value}
+        value={String(value)}
         height="200px"
         extensions={[javascript({ jsx: true })]}
         onChange={onChange}

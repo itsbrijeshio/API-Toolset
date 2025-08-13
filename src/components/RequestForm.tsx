@@ -9,7 +9,7 @@ const RequestForm = () => {
   const { mutate, isPending } = useMutateApi({
     onSuccess: (data: Record<string, string>) => {
       const res = { ...data, isPending: false };
-      setResponse({...res});
+      setResponse({ ...res });
     },
     onError: (err: Record<string, string>) => {
       if (axios.isAxiosError(err)) {
@@ -28,14 +28,20 @@ const RequestForm = () => {
       params: {},
     },
     onSubmit: (values) => {
-      setResponse({});
       if (request?.form) {
         request.data = request.form;
+        delete request.form;
         request.headers = {
           "Content-Type": "application/x-www-form-urlencoded",
         };
       } else {
-        request.data = request.json;
+        if (typeof request.json === "string") {
+          request.data = JSON.parse(request.json || "{}");
+          delete request.json
+          request.headers = {
+            "Content-Type": "application/json",
+          };
+        }
       }
       values = { ...values, ...request };
 
