@@ -12,7 +12,7 @@ const JsonReq = () => {
     (val: string) => {
       const timer = setTimeout(() => {
         try {
-          setRequest({ ...request, json: JSON.parse(val) });
+          setRequest((prev) => ({ ...prev, json: JSON.parse(val) }));
         } catch (error) {
           console.log(error);
         }

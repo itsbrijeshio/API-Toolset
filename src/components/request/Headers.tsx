@@ -11,7 +11,7 @@ const defaultHeaders = [
 ];
 
 const Headers = () => {
-  const { setRequest, request } = useApi();
+  const { setRequest } = useApi();
   const [count, setCount] = useState(1);
   const [headers, setHeaders] =
     useState<{ name: string; value: string }[]>(defaultHeaders);
@@ -32,7 +32,7 @@ const Headers = () => {
         if (!name || !value) continue;
         newHeaders[name] = value;
       }
-      setRequest({ ...request, headers: newHeaders });
+      setRequest((prev) => ({ ...prev, headers: newHeaders }));
     }, 1000);
     // Cleanup function to clear the timer
     return () => clearTimeout(timer);

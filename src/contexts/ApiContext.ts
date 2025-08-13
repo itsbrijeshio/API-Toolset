@@ -1,14 +1,10 @@
 import { createContext } from "react";
 
 interface ContextType {
-  response: Record<string, string>;
-  setResponse: (
-    response: Record<string, Record<string, string> | unknown>
-  ) => void;
+  response: Record<string, unknown>;
+  setResponse: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
   request: Record<string, unknown>;
-  setRequest: (
-    Request: Record<string | number, Record<string, unknown> | string>
-  ) => void;
+  setRequest: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
 }
 
 const apiContextInitialize = {

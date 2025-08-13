@@ -4,7 +4,7 @@ import { IoAddOutline } from "react-icons/io5";
 import { useApi } from "../../contexts";
 
 const Params = () => {
-  const { setRequest, request } = useApi();
+  const { setRequest } = useApi();
   const [count, setCount] = useState(2);
   const [params, setParams] = useState<{ name: string; value: string }[]>([]);
 
@@ -24,7 +24,7 @@ const Params = () => {
         if (!name || !value) continue;
         newParams[name] = value;
       }
-      setRequest({ ...request, params: newParams });
+      setRequest((prev) => ({ ...prev, params: newParams }));
     }, 1000);
     // Cleanup function to clear the timer
     return () => clearTimeout(timer);

@@ -25,7 +25,7 @@ const HTML = () => {
           </div>
         )}
         <iframe
-          srcDoc={response?.html}
+          srcDoc={String(response?.html)}
           title="HTML Response"
           className="h-100 w-full p-2 overflow-y-scroll !bg-base-100"
         ></iframe>
@@ -34,7 +34,7 @@ const HTML = () => {
   );
   return (
     <MarkdownPreview
-      source={response?.html || ""}
+      source={String(response?.html)}
       className="max-h-100 h-fit p-2 overflow-y-scroll !bg-base-100"
     />
   );

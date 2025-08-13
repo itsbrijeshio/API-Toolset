@@ -2,8 +2,8 @@ import { useState, type ReactNode } from "react";
 import ApiContext from "./ApiContext";
 
 const ApiProvider = ({ children }: { children: ReactNode }) => {
-  const [response, setResponse] = useState<Record<string, string>>({});
-  const [request, setRequest] = useState<Record<string, string>>({});
+  const [response, setResponse] = useState<Record<string, unknown>>({});
+  const [request, setRequest] = useState<Record<string, unknown>>({});
 
   const values = { response, setResponse, request, setRequest };
 

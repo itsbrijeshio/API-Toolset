@@ -4,7 +4,7 @@ import { IoAddOutline } from "react-icons/io5";
 import { useApi } from "../../contexts";
 
 const Form = () => {
-  const { setRequest, request } = useApi();
+  const { setRequest } = useApi();
   const [count, setCount] = useState(1);
   const [forms, setForm] = useState<{ name: string; value: string }[]>([]);
 
@@ -24,7 +24,7 @@ const Form = () => {
         if (!name || !value) continue;
         newForm += `${name}=${value}&`;
       }
-      setRequest({ ...request, form: newForm });
+      setRequest((prev) => ({ ...prev, form: newForm.slice(0, -1) }));
     }, 1000);
     // Cleanup function to clear the timer
     return () => clearTimeout(timer);
